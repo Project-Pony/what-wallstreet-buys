@@ -26,12 +26,12 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em]",
+        "inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide max-w-full",
         variantClasses[variant],
         className
       )}
     >
-      {children}
+      <span className="truncate">{children}</span>
     </span>
   );
 }

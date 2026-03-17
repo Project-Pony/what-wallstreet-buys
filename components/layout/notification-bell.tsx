@@ -32,31 +32,31 @@ export function NotificationBell({ notifications, role }: NotificationBellProps)
   return (
     <div className="relative">
       <Button
-        className="relative h-11 w-11 rounded-2xl p-0"
+        className="relative h-9 w-9 rounded-xl p-0"
         variant="secondary"
         onClick={() => setOpen((value) => !value)}
       >
         <Bell className="h-4 w-4" />
         {unreadCount > 0 ? (
-          <span className="absolute right-2 top-2 flex h-2.5 w-2.5 rounded-full bg-primary" />
+          <span className="absolute right-1.5 top-1.5 flex h-2 w-2 rounded-full bg-primary" />
         ) : null}
       </Button>
 
       {open ? (
-        <div className="absolute right-0 z-30 mt-3 w-[22rem] rounded-3xl border border-slate-200 bg-white p-4 shadow-panel">
-          <div className="mb-4 flex items-center justify-between">
+        <div className="absolute right-0 z-30 mt-2 w-[min(22rem,calc(100vw-2rem))] rounded-2xl border border-slate-200 bg-white p-3 shadow-panel">
+          <div className="mb-3 flex items-center justify-between gap-2">
             <div>
-              <h3 className="font-semibold text-slate-900">Notifications</h3>
-              <p className="text-sm text-slate-500">Unread items for your queue</p>
+              <h3 className="text-sm font-bold text-slate-900">Notifications</h3>
+              <p className="text-xs text-slate-500">Unread items</p>
             </div>
             <Badge variant={unreadCount > 0 ? "blue" : "neutral"}>
-              {unreadCount} unread
+              {unreadCount}
             </Badge>
           </div>
 
-          <div className="max-h-80 space-y-3 overflow-y-auto pr-1">
+          <div className="max-h-72 space-y-2 overflow-y-auto">
             {notifications.length === 0 ? (
-              <p className="rounded-2xl bg-slate-50 px-4 py-5 text-sm text-slate-500">
+              <p className="rounded-xl bg-slate-50 px-3 py-4 text-sm text-slate-500 text-center">
                 No notifications right now.
               </p>
             ) : (
@@ -64,18 +64,18 @@ export function NotificationBell({ notifications, role }: NotificationBellProps)
                 <Link
                   key={notification.id}
                   href={`${targetPath}?lead=${notification.leadId}`}
-                  className="block rounded-2xl border border-slate-200 p-4 transition hover:border-slate-300 hover:bg-slate-50"
+                  className="block rounded-xl border border-slate-100 p-3 transition hover:border-slate-200 hover:bg-slate-50"
                   onClick={() => setOpen(false)}
                 >
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center justify-between gap-2">
                     <Badge variant={notification.isRead ? "neutral" : "blue"}>
                       {notification.isRead ? "Read" : "New"}
                     </Badge>
-                    <span className="text-xs text-slate-400">
+                    <span className="text-[10px] text-slate-400">
                       {formatDateTime(notification.createdAt)}
                     </span>
                   </div>
-                  <p className="mt-3 text-sm font-medium leading-6 text-slate-800">
+                  <p className="mt-2 text-sm font-medium leading-5 text-slate-800 line-clamp-2">
                     {notification.message}
                   </p>
                 </Link>

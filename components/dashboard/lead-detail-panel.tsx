@@ -101,17 +101,17 @@ export function LeadDetailPanel({
         className="fixed inset-0 z-30 bg-slate-950/20 backdrop-blur-sm"
         href={basePath}
       />
-      <aside className="fixed inset-y-0 right-0 z-40 w-full max-w-2xl overflow-y-auto border-l border-slate-200 bg-white shadow-panel">
-        <div className="sticky top-0 z-10 border-b border-slate-200 bg-white px-6 py-5">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
+      <aside className="fixed inset-y-0 right-0 z-40 w-full max-w-2xl overflow-y-auto border-l border-slate-200 bg-slate-50 shadow-panel">
+        <div className="sticky top-0 z-10 border-b border-slate-200 bg-white px-5 py-4">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
                 {lead.leadCode}
               </p>
-              <h2 className="mt-2 text-2xl font-semibold text-slate-950">
+              <h2 className="mt-1 text-xl font-bold text-slate-950 truncate">
                 {showClientInfo && lead.clientName ? lead.clientName : "Confidential"}
               </h2>
-              <div className="mt-4 flex flex-wrap items-center gap-3">
+              <div className="mt-3 flex flex-wrap items-center gap-2">
                 <Badge variant="blue">{stage.name}</Badge>
                 <Badge variant="neutral">{ROLE_LABELS[stage.ownerRole]}</Badge>
                 <SLABadge
@@ -121,33 +121,33 @@ export function LeadDetailPanel({
               </div>
             </div>
             <Link
-              className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-100 text-slate-600 transition hover:bg-slate-200"
+              className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-500 transition hover:bg-slate-200 flex-shrink-0"
               href={basePath}
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             </Link>
           </div>
         </div>
 
-        <div className="space-y-8 px-6 py-6">
-          <section className="rounded-[1.75rem] border border-slate-200 bg-slate-50 p-5">
-            <h3 className="text-lg font-semibold text-slate-950">Lead Overview</h3>
-            <p className="mt-4 text-sm leading-6 text-slate-600">{lead.requirementDetails}</p>
+        <div className="space-y-5 px-5 py-5">
+          <section className="rounded-2xl border border-slate-200 bg-white p-4">
+            <h3 className="text-sm font-bold text-slate-950">Lead Overview</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{lead.requirementDetails}</p>
 
-            <div className="mt-5 grid gap-3 md:grid-cols-2">
-              <div className="rounded-2xl bg-white p-4">
-                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl bg-slate-50 p-3">
+                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
                   Workflow Status
                 </p>
-                <p className="mt-2 text-sm font-medium text-slate-900">
+                <p className="mt-1.5 text-sm font-semibold text-slate-900">
                   {lead.status.replaceAll("_", " ")}
                 </p>
               </div>
-              <div className="rounded-2xl bg-white p-4">
-                <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+              <div className="rounded-xl bg-slate-50 p-3">
+                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
                   Expected Delivery
                 </p>
-                <p className="mt-2 text-sm font-medium text-slate-900">
+                <p className="mt-1.5 text-sm font-semibold text-slate-900">
                   {lead.expectedDeliveryDate
                     ? formatDateTime(lead.expectedDeliveryDate)
                     : "Awaiting entry"}
@@ -156,55 +156,55 @@ export function LeadDetailPanel({
             </div>
           </section>
 
-          <section className="rounded-[1.75rem] border border-slate-200 bg-white p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <h3 className="text-lg font-semibold text-slate-950">
+          <section className="rounded-2xl border border-slate-200 bg-white p-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="min-w-0">
+                <h3 className="text-sm font-bold text-slate-950">
                   Parallel Workflow Status
                 </h3>
-                <p className="mt-1 text-sm text-slate-500">
-                  Both operational tracks are displayed side by side.
+                <p className="mt-0.5 text-xs text-slate-500">
+                  Both operational tracks displayed side by side.
                 </p>
               </div>
               <Badge variant="neutral">{stage.group}</Badge>
             </div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {parallelTracks.map((track) => (
                 <div
                   key={track.label}
-                  className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+                  className="rounded-xl border border-slate-100 bg-slate-50 p-3"
                 >
-                  <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                  <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
                     {track.label}
                   </p>
-                  <div className="mt-3">
+                  <div className="mt-2">
                     <Badge variant={track.tone}>{track.value}</Badge>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-5 rounded-2xl bg-slate-50 p-4 text-sm leading-6 text-slate-600">
-              <p className="font-semibold text-slate-900">Combined timeline summary</p>
-              <p className="mt-2">{getLeadCombinedTimeline(briefs)}</p>
+            <div className="mt-4 rounded-xl bg-slate-50 p-3 text-sm leading-6 text-slate-600">
+              <p className="text-xs font-bold text-slate-900">Combined timeline</p>
+              <p className="mt-1 text-sm">{getLeadCombinedTimeline(briefs)}</p>
             </div>
           </section>
 
-          <section className="rounded-[1.75rem] border border-slate-200 bg-white p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <h3 className="text-lg font-semibold text-slate-950">Current Stage</h3>
-                <p className="mt-1 text-sm text-slate-500">
-                  {stage.name} · Owned by {ROLE_LABELS[stage.ownerRole]}
+          <section className="rounded-2xl border border-slate-200 bg-white p-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="min-w-0">
+                <h3 className="text-sm font-bold text-slate-950">Current Stage</h3>
+                <p className="mt-0.5 text-xs text-slate-500 truncate">
+                  {stage.name} · {ROLE_LABELS[stage.ownerRole]}
                 </p>
               </div>
               <Badge variant={canAct ? "green" : "neutral"}>
-                {canAct ? "Action available" : "Read only"}
+                {canAct ? "Action" : "Read only"}
               </Badge>
             </div>
 
-            <div className="mt-5">
+            <div className="mt-4">
               <StageActionForm
                 canAct={canAct}
                 isDemo={isDemo}
@@ -214,17 +214,17 @@ export function LeadDetailPanel({
             </div>
 
             {lead.status === "client_approved_ready_for_pi" ? (
-              <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="font-semibold text-slate-900">
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-slate-900">
                       Move to Bulk Order Process
                     </p>
-                    <p className="mt-1 text-sm text-slate-500">
-                      This handoff stays disabled in Phase 1.
+                    <p className="mt-0.5 text-xs text-slate-500">
+                      Disabled in Phase 1.
                     </p>
                   </div>
-                  <Button disabled variant="secondary">
+                  <Button disabled variant="secondary" size="sm">
                     Coming Soon
                   </Button>
                 </div>
@@ -232,85 +232,85 @@ export function LeadDetailPanel({
             ) : null}
           </section>
 
-          <section className="rounded-[1.75rem] border border-slate-200 bg-white p-5">
-            <h3 className="text-lg font-semibold text-slate-950">Attached Documents</h3>
-            <div className="mt-4 space-y-3">
+          <section className="rounded-2xl border border-slate-200 bg-white p-4">
+            <h3 className="text-sm font-bold text-slate-950">Attached Documents</h3>
+            <div className="mt-3 space-y-2">
               {documents.length === 0 ? (
-                <p className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500">
-                  No documents uploaded for this lead yet.
+                <p className="rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-500">
+                  No documents uploaded yet.
                 </p>
               ) : (
                 documents.map((document) => (
                   <a
                     key={document.id}
-                    className="flex items-center justify-between rounded-2xl border border-slate-200 px-4 py-4 transition hover:bg-slate-50"
+                    className="flex items-center justify-between gap-3 rounded-xl border border-slate-100 px-3 py-3 transition hover:bg-slate-50"
                     href={document.url}
                     rel="noreferrer"
                     target="_blank"
                   >
-                    <div className="flex items-center gap-3">
-                      <FileText className="h-4 w-4 text-blue-600" />
-                      <div>
-                        <p className="text-sm font-semibold text-slate-900">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <FileText className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-slate-900 truncate">
                           {document.label}
                         </p>
-                        <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                        <p className="text-[10px] uppercase tracking-widest text-slate-400">
                           {document.meta}
                         </p>
                       </div>
                     </div>
-                    <span className="text-sm text-slate-500">Open</span>
+                    <span className="text-xs font-medium text-blue-600 flex-shrink-0">Open &rarr;</span>
                   </a>
                 ))
               )}
             </div>
           </section>
 
-          <section className="rounded-[1.75rem] border border-slate-200 bg-white p-5">
-            <h3 className="text-lg font-semibold text-slate-950">Stage History</h3>
-            <div className="mt-5 space-y-4">
+          <section className="rounded-2xl border border-slate-200 bg-white p-4">
+            <h3 className="text-sm font-bold text-slate-950">Stage History</h3>
+            <div className="mt-3 space-y-2">
               {stageLogs.map((stageLog) => (
-                <div key={stageLog.id} className="flex gap-4">
-                  <div className="flex w-4 justify-center">
+                <div key={stageLog.id} className="flex gap-3">
+                  <div className="flex w-3 justify-center pt-1.5">
                     <span
-                      className={`mt-1 h-3 w-3 rounded-full ${
+                      className={`h-2.5 w-2.5 rounded-full flex-shrink-0 ${
                         stageLog.completedAt ? "bg-emerald-500" : "bg-amber-400"
                       }`}
                     />
                   </div>
-                  <div className="flex-1 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div>
-                        <p className="font-semibold text-slate-900">{stageLog.stageName}</p>
-                        <p className="mt-1 text-sm text-slate-500">
-                          Owner: {ROLE_LABELS[stageLog.assignedToRole]}
+                  <div className="flex-1 min-w-0 rounded-xl border border-slate-100 bg-slate-50 p-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="min-w-0">
+                        <p className="text-sm font-bold text-slate-900 truncate">{stageLog.stageName}</p>
+                        <p className="mt-0.5 text-xs text-slate-500">
+                          {ROLE_LABELS[stageLog.assignedToRole]}
                         </p>
                       </div>
                       <Badge variant={stageLog.completedAt ? "green" : "yellow"}>
-                        {stageLog.completedAt ? "Completed" : "Active"}
+                        {stageLog.completedAt ? "Done" : "Active"}
                       </Badge>
                     </div>
-                    <div className="mt-4 grid gap-3 md:grid-cols-2">
-                      <div className="rounded-2xl bg-white p-4 text-sm text-slate-600">
-                        <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                    <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                      <div className="rounded-lg bg-white p-2.5 text-xs">
+                        <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
                           Started
                         </p>
-                        <p className="mt-2 font-medium text-slate-900">
+                        <p className="mt-1 font-semibold text-slate-900">
                           {formatDateTime(stageLog.startedAt)}
                         </p>
                       </div>
-                      <div className="rounded-2xl bg-white p-4 text-sm text-slate-600">
-                        <p className="text-xs uppercase tracking-[0.16em] text-slate-400">
+                      <div className="rounded-lg bg-white p-2.5 text-xs">
+                        <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
                           Deadline
                         </p>
-                        <p className="mt-2 font-medium text-slate-900">
+                        <p className="mt-1 font-semibold text-slate-900">
                           {formatDateTime(stageLog.deadlineAt)}
                         </p>
                       </div>
                     </div>
                     {stageLog.notes ? (
-                      <div className="mt-4 flex gap-3 rounded-2xl bg-white p-4 text-sm leading-6 text-slate-600">
-                        <StickyNote className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+                      <div className="mt-2 flex gap-2 rounded-lg bg-white p-2.5 text-xs leading-5 text-slate-600">
+                        <StickyNote className="mt-0.5 h-3.5 w-3.5 shrink-0 text-slate-400" />
                         <p>{stageLog.notes}</p>
                       </div>
                     ) : null}
@@ -320,42 +320,42 @@ export function LeadDetailPanel({
             </div>
           </section>
 
-          <section className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-[1.75rem] border border-slate-200 bg-white p-5">
-              <h3 className="text-lg font-semibold text-slate-950">Client Info</h3>
+          <section className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 bg-white p-4">
+              <h3 className="text-sm font-bold text-slate-950">Client Info</h3>
               {showClientInfo ? (
-                <div className="mt-4 space-y-3 text-sm text-slate-600">
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-4 w-4 text-slate-400" />
-                    <span>{lead.clientEmail ?? "Not shared"}</span>
+                <div className="mt-3 space-y-2 text-sm text-slate-600">
+                  <div className="flex items-center gap-2">
+                    <Mail className="h-3.5 w-3.5 text-slate-400 flex-shrink-0" />
+                    <span className="truncate">{lead.clientEmail ?? "Not shared"}</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="h-4 w-4 text-slate-400" />
-                    <span>{lead.clientPhone ?? "Not shared"}</span>
+                  <div className="flex items-center gap-2">
+                    <Phone className="h-3.5 w-3.5 text-slate-400 flex-shrink-0" />
+                    <span className="truncate">{lead.clientPhone ?? "Not shared"}</span>
                   </div>
                 </div>
               ) : (
-                <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
+                <div className="mt-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-3 text-sm text-slate-500">
                   Confidential
                 </div>
               )}
             </div>
 
-            <div className="rounded-[1.75rem] border border-slate-200 bg-white p-5">
-              <h3 className="text-lg font-semibold text-slate-950">Notifications</h3>
-              <div className="mt-4 space-y-3">
+            <div className="rounded-2xl border border-slate-200 bg-white p-4">
+              <h3 className="text-sm font-bold text-slate-950">Notifications</h3>
+              <div className="mt-3 space-y-2">
                 {notifications.length === 0 ? (
-                  <p className="rounded-2xl bg-slate-50 px-4 py-4 text-sm text-slate-500">
-                    No notifications attached to this lead.
+                  <p className="rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-500">
+                    No notifications for this lead.
                   </p>
                 ) : (
                   notifications.map((notification) => (
                     <div
                       key={notification.id}
-                      className="rounded-2xl bg-slate-50 px-4 py-4 text-sm leading-6 text-slate-600"
+                      className="rounded-xl bg-slate-50 px-3 py-3 text-sm leading-5 text-slate-600"
                     >
                       <p className="font-medium text-slate-900">{notification.message}</p>
-                      <p className="mt-1 text-xs uppercase tracking-[0.16em] text-slate-400">
+                      <p className="mt-0.5 text-[10px] uppercase tracking-widest text-slate-400">
                         {formatDateTime(notification.createdAt)}
                       </p>
                     </div>

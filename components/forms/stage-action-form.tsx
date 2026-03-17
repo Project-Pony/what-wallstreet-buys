@@ -14,7 +14,7 @@ interface StageActionFormProps {
 }
 
 const fieldBaseClass =
-  "mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-200 focus:bg-white";
+  "mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-200 focus:bg-white";
 
 export function StageActionForm({
   stage,
@@ -138,15 +138,15 @@ export function StageActionForm({
 
   if (stage.systemDriven) {
     return (
-      <div className="rounded-3xl border border-blue-200 bg-blue-50 p-5 text-sm text-blue-800">
+      <div className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800">
         {helperText}
       </div>
     );
   }
 
   return (
-    <form className="space-y-4" onSubmit={handleSubmit}>
-      <p className="rounded-2xl bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600">
+    <form className="space-y-3" onSubmit={handleSubmit}>
+      <p className="rounded-xl bg-slate-50 px-3 py-2.5 text-sm leading-5 text-slate-600">
         {helperText}
       </p>
 
@@ -203,9 +203,9 @@ export function StageActionForm({
 
       {["2A", "2B"].includes(stage.key) ? (
         <>
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
             <p className="text-sm font-medium text-slate-700">Decision</p>
-            <div className="mt-3 flex gap-4">
+            <div className="mt-2 flex gap-4">
               <label className="flex items-center gap-2 text-sm text-slate-700">
                 <input name="decision" type="radio" value="approved" />
                 Approve
@@ -237,8 +237,8 @@ export function StageActionForm({
       ) : null}
 
       {stage.key === "3" ? (
-        <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700">
-          <input className="mt-1 h-4 w-4 rounded border-slate-300" name="confirmed" type="checkbox" />
+        <label className="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-700">
+          <input className="mt-0.5 h-4 w-4 rounded border-slate-300" name="confirmed" type="checkbox" />
           <span>Timeline sent to client via WhatsApp and Email.</span>
         </label>
       ) : null}
@@ -259,8 +259,8 @@ export function StageActionForm({
 
       {["5A", "5B"].includes(stage.key) ? (
         <>
-          <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700">
-            <input className="mt-1 h-4 w-4 rounded border-slate-300" name="confirmed" type="checkbox" />
+          <label className="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-700">
+            <input className="mt-0.5 h-4 w-4 rounded border-slate-300" name="confirmed" type="checkbox" />
             <span>Sample dispatched to Sales Manager.</span>
           </label>
           <label className="block text-sm font-medium text-slate-700">
@@ -276,8 +276,8 @@ export function StageActionForm({
       ) : null}
 
       {["5A_CONFIRM", "5B_CONFIRM", "6_ACK", "7.1", "7.3"].includes(stage.key) ? (
-        <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-sm text-slate-700">
-          <input className="mt-1 h-4 w-4 rounded border-slate-300" name="confirmed" type="checkbox" />
+        <label className="flex items-start gap-2.5 rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-700">
+          <input className="mt-0.5 h-4 w-4 rounded border-slate-300" name="confirmed" type="checkbox" />
           <span>Confirm completion for this step.</span>
         </label>
       ) : null}

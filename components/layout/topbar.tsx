@@ -18,22 +18,22 @@ export function Topbar({
   isDemo
 }: TopbarProps) {
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/90 px-4 py-4 backdrop-blur lg:px-8">
+    <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/95 px-4 py-3 backdrop-blur-md lg:px-8">
       <div className="flex items-center justify-between gap-4">
-        <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
+        <div className="min-w-0 flex-1">
+          <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
             Sales Sampling Process
           </p>
-          <h2 className="mt-1 text-xl font-semibold text-slate-950">
+          <h2 className="mt-0.5 text-lg font-bold text-slate-950 truncate">
             Welcome back{currentUser ? `, ${currentUser.fullName.split(" ")[0]}` : ""}
           </h2>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 flex-shrink-0">
           {isDemo ? (
-            <Badge variant="yellow">Demo data active</Badge>
+            <Badge variant="yellow">Demo</Badge>
           ) : null}
-          {role ? <Badge variant="blue">{ROLE_LABELS[role]}</Badge> : null}
+          {role ? <Badge className="hidden sm:inline-flex" variant="blue">{ROLE_LABELS[role]}</Badge> : null}
           <NotificationBell notifications={notifications} role={role} />
           <LogoutButton />
         </div>

@@ -36,27 +36,27 @@ export function Sidebar({ currentUser, role }: SidebarProps) {
   const navItems = role ? NAV_BY_ROLE[role] : [];
 
   return (
-    <aside className="hidden min-h-screen w-72 flex-col bg-sidebar px-6 py-6 text-sidebar-foreground lg:flex">
-      <div className="rounded-3xl border border-white/10 bg-white/5 p-5">
+    <aside className="hidden min-h-screen w-64 flex-col bg-sidebar px-5 py-5 text-sidebar-foreground lg:flex">
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-lg font-bold text-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-sm font-bold text-white">
             RA
           </div>
-          <div>
-            <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+          <div className="min-w-0">
+            <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
               Internal Workflow
             </p>
-            <h1 className="font-semibold text-white">Sales Operations</h1>
+            <h1 className="font-bold text-sm text-white truncate">Sales Operations</h1>
           </div>
         </div>
         {role ? (
-          <Badge className="mt-4 bg-white/10 text-white" variant="neutral">
+          <Badge className="mt-3 bg-white/10 text-white" variant="neutral">
             {ROLE_LABELS[role]}
           </Badge>
         ) : null}
       </div>
 
-      <nav className="mt-8 space-y-2">
+      <nav className="mt-6 space-y-1">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -66,7 +66,7 @@ export function Sidebar({ currentUser, role }: SidebarProps) {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition",
+                "flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium transition",
                 isActive
                   ? "bg-primary text-white shadow-lg shadow-blue-950/20"
                   : "text-slate-300 hover:bg-white/5 hover:text-white"
@@ -79,14 +79,14 @@ export function Sidebar({ currentUser, role }: SidebarProps) {
         })}
       </nav>
 
-      <div className="mt-auto rounded-3xl border border-white/10 bg-white/5 p-5">
-        <p className="text-xs uppercase tracking-[0.18em] text-slate-400">
+      <div className="mt-auto rounded-2xl border border-white/10 bg-white/5 p-4">
+        <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">
           Signed in
         </p>
-        <p className="mt-2 font-semibold text-white">
+        <p className="mt-1.5 text-sm font-bold text-white truncate">
           {currentUser?.fullName ?? "Guest"}
         </p>
-        <p className="mt-1 text-sm text-slate-400">
+        <p className="mt-0.5 text-xs text-slate-400 truncate">
           {currentUser?.email ?? "No active session"}
         </p>
       </div>

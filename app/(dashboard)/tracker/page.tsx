@@ -19,17 +19,17 @@ export default async function TrackerPage() {
   const rows = getTrackerRows(snapshot);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div>
-        <p className="text-xs uppercase tracking-[0.22em] text-blue-600">
+        <p className="text-[10px] uppercase tracking-widest text-blue-600 font-medium">
           Sales Manager View
         </p>
-        <h1 className="mt-2 text-3xl font-semibold text-slate-950">
+        <h1 className="mt-1 text-2xl font-bold text-slate-950">
           Sales Tracker
         </h1>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-500">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500">
           Monitor active leads, dispatch details, delivery expectations, and client
-          approval status in a filterable table.
+          approval status.
         </p>
       </div>
 

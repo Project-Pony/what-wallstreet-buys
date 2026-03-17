@@ -29,14 +29,14 @@ export function LeadCard({
     <Link
       href={href}
       className={cn(
-        "group block rounded-3xl border bg-white p-5 shadow-card transition hover:-translate-y-0.5 hover:shadow-panel",
-        isBreached ? "border-red-300" : "border-slate-200"
+        "group block rounded-2xl border bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-card",
+        isBreached ? "border-red-300 bg-red-50/50" : "border-slate-200"
       )}
     >
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <h3 className="text-base font-semibold text-slate-950">{lead.leadCode}</h3>
-          <p className="mt-2 text-sm text-slate-500">
+      <div className="flex items-start justify-between gap-2">
+        <div className="min-w-0 flex-1">
+          <h3 className="text-sm font-bold text-slate-950 truncate">{lead.leadCode}</h3>
+          <p className="mt-1 text-xs text-slate-500 truncate">
             {showClientName && lead.clientName ? lead.clientName : "Client confidential"}
           </p>
         </div>
@@ -46,17 +46,19 @@ export function LeadCard({
         />
       </div>
 
-      <p className="mt-4 line-clamp-3 text-sm leading-6 text-slate-600">
-        {lead.requirementDetails}
-      </p>
+      {lead.requirementDetails ? (
+        <p className="mt-3 line-clamp-2 text-xs leading-5 text-slate-600">
+          {lead.requirementDetails}
+        </p>
+      ) : null}
 
-      <div className="mt-4 grid gap-2">
+      <div className="mt-3 space-y-1.5">
         {parallelTracks.map((track) => (
           <div
             key={track.label}
-            className="flex items-center justify-between rounded-2xl bg-slate-50 px-3 py-2"
+            className="flex items-center justify-between gap-2 rounded-lg bg-slate-50 px-2.5 py-1.5"
           >
-            <span className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
               {track.label}
             </span>
             <Badge variant={track.tone}>{track.value}</Badge>
@@ -64,10 +66,10 @@ export function LeadCard({
         ))}
       </div>
 
-      <div className="mt-5 flex items-center justify-between gap-3">
+      <div className="mt-3 flex items-center justify-between gap-2 border-t border-slate-100 pt-3">
         <Badge variant="blue">{stage.name}</Badge>
-        <span className="text-sm font-medium text-slate-500 group-hover:text-slate-700">
-          Open lead
+        <span className="text-xs font-medium text-slate-400 group-hover:text-primary transition">
+          View &rarr;
         </span>
       </div>
     </Link>
